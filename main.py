@@ -54,6 +54,8 @@ for i in range(N):
     prob += reprs[i] == multiplier * (allocs[i] * c) / prices[i]
     prob += qty[i] == (1 / multiplier) * reprs[i]
 
+prob += pulp.lpSum([prices[i] * qty[i] for i in range(N)]) <= c
+
 # Solve the problem
 prob.solve()
 
